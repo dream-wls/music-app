@@ -30,8 +30,19 @@ export default {
           height: window.devicePixelRatio * 45,
       }
   },
+  methods: {
+    //关闭下拉刷新
+    loadingEnd() {
+
+        this.scroll.scrollTo(0, (-1) * this.height  ,300);
+        this.isPullDown = false;
+          this.$toast.success('加载成功');
+
+    }
+  },
   mounted() {
-    const scroll = new IScroll(this.$refs.scroll, {
+
+    const scroll = this.scroll = new IScroll(this.$refs.scroll, {
       tap: true,
       click: true,
       probeType: 3,
@@ -60,6 +71,10 @@ export default {
           //没有达到刷新条件
         scroll.scrollTo(0, (-1) * this.height  ,300);
       } else if( scroll.y >= 0) {
+          //这里是防抖 如果在刷新就不用再次请求数据
+        if( this.isPullDown == true) {
+          return ;
+        }
           //达到了刷新条件
         this.pullDownText = '正在加载中...';
           //转化为正在加载状态
@@ -67,9 +82,6 @@ export default {
         
         //加载完毕后收回去 
         this.$emit('pull-down');
-        
-        
-        
       }
     })
     scroll.scrollTo(0, (-1) *this.height  ,0);
@@ -79,13 +91,13 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "../../assets/global-style.scss";
 .scroll-view {
   overflow: hidden;
 }
 
 .loading {
   width: 100%;
-  background-color: red;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,7 +108,7 @@ export default {
       display: inline-block;
       width: 3px;
       height: 13px;
-      background-color: blue;
+      background-color: $theme-color;
       margin-right: 2px;
       animation: dong 1s  infinite alternate;
     &:nth-child(1) {

@@ -6,6 +6,7 @@
         <!-- 我们再在内部把背景颜色改回来 -->
         <div class="wrap">
           {{ loading }}
+          
           <banner-list :data="banner" />
           <recommend-list :data="recommend" />
         </div>

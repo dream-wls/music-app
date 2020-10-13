@@ -1,6 +1,8 @@
 import VueLazyload from 'vue-lazyload'
 import Appscroll from '../components/comment/app-scroll.vue'
 import InfiniteScroll from '../components/comment/infinite-scroll'
+import { Button,Toast} from 'vant'
+
 
 export default {
     install(Vue) {
@@ -11,6 +13,9 @@ export default {
             loading: 'img/music.png',
             attempt: 1
         })
+
+        Vue.use(Button);
+        Vue.use(Toast);
 
         //滚动组件
         Vue.component('app-scroll', Appscroll);

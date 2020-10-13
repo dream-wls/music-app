@@ -5,8 +5,9 @@
       <div class="right">
         <div class="title">{{ data.name }}</div>
         <div class="creator">
+            <!-- 这个地方我们用 && 如果 data.creator 为空的话我们就返回false -->
             <img class="creatorImg" :src="data.creator && data.creator.avatarUrl" alt="" />
-          <p class="creatorName">{{ data.creator && data.creator.nickname }}</p>  
+            <p class="creatorName">{{ data.creator && data.creator.nickname }}</p>  
           
         </div>
       </div>

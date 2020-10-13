@@ -9,7 +9,7 @@
       <menu-list title="首字母" :data="menu_1" v-model="select_letter" />
     </div>
 
-    <infinite-scroll class="content" @pull-down ="handlePullDown">
+    <infinite-scroll class="content" ref="scroll" @pull-down ="handlePullDown">
 
       <div class="item" v-for="item in singersList" :key="item.id">
         <img class="img" v-lazy="item.img" alt="" />
@@ -78,17 +78,18 @@ export default {
       //再一次请求数据
       console.log('handlePullDown父组件中请求了数据。。。');
       this.requestSingers();
-      console.log(this.loading);
-      this.$watch('loading',(newVal)=> {
-        console.log(this.newVal);
 
+      //监听是否加载完成
+      this.$watch('loading',(newVal,oldVal)=> {
+        if( !newVal ) {
+          //加载部分要收回去
+          this.$refs.scroll.loadingEnd();
+          // this.$toast.success('加载成功');
+        }
       })
     }
   },
   created() {
-  // this.$nextTick(function(){
-  //               console.log(this.singersList);
-  //           })
     //构建字母
     let result = new Array(26).fill(65).map((item, index) => {
       return {
