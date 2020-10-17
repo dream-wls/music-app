@@ -4,6 +4,7 @@ import recommend from './modules/recommend'
 import singers from './modules/singers'
 import recommendList from './modules/recommendList'
 import rank from './modules/rank'
+import search from './modules/search'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     recommend,
     singers,
     recommendList,
-    rank
+    rank,
+    search
   }
 })

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -11,6 +10,7 @@ const routes = [
     component: ()=> import('../views/Home'),
     redirect:'/recommend',
     children: [
+      //推荐
       {
         path:'recommend',
         name: 'recommend',
@@ -23,15 +23,23 @@ const routes = [
           }
         ]
       },
+      //歌手
       {
         path:'singers',
         name: 'singers',
         component: ()=> import('../views/Singers')
       },
+      //排行榜
       {
         path:'rank',
         name: 'rank',
         component: ()=> import('../views/Rank')
+      },
+      //搜索
+      {
+        path: 'search',
+        name: 'search',
+        component: ()=> import('../views/Search'),
       }
     ]
   },

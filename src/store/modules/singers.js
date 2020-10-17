@@ -1,4 +1,4 @@
-import {SINGERS_LIST_API} from '../../api/url'
+import {SINGERS_LIST_API,SEARCH_API} from '../../api/url'
 import http from '../../api/http'
 
 export default {
@@ -6,6 +6,7 @@ export default {
     state: {
         singersList: [],
         loading: false,
+        
     },
     getters: {
 
@@ -16,8 +17,8 @@ export default {
         },
         setLoading(state, payload) {
             state.loading = payload;
-        }
-
+        },
+    
     },
     actions: {
         //这边commit
@@ -38,7 +39,8 @@ export default {
             context.commit('setLoading' , false);
             //当这里的loading 变为true的时候，表示加载完毕
 
-            
-        }
+    
+        },
+        
     }
 }

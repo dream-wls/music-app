@@ -7,7 +7,7 @@ module.exports = {
             require('postcss-pxtorem')({
               rootValue: 37.5,//效果图
               unitPrecision: 5,
-              propList: ['*'],
+              propList: ['*'],//不进行转换的列表
               selectorBlackList: [],
               replace: true,
               mediaQuery: false,

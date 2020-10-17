@@ -23,8 +23,11 @@ export default {
         width: {
             type: [Number,String],
             default: '100%',
-        }
+        },
+        headerChange:Function,
+        //详情页的头部改变
     },
+
     computed: {
         wrapwidth() {
             if(typeof this.width == "String") {
@@ -49,6 +52,7 @@ export default {
         });
         //监听滚动的事件
         this.change && scroll.on('scroll', ()=> {
+            // scroll.bounce = false
             if(scroll.y >= 0) {
             //这个地方设置传入的参数
                 this.change(true);
@@ -58,6 +62,14 @@ export default {
             //这个地方是把当前的位置传递给外部的组件
             // this.change({x: scroll.x, y: scroll.y});
 
+        })
+        this.headerChange && scroll.on('scroll', ()=> {
+            if(scroll.y <= -80) {
+                //当y轴滑过过一个头部
+                this.headerChange(true);
+            }else {
+                this.headerChange(false);
+            }
         })
     }
 }

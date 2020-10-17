@@ -3,7 +3,9 @@
     <header class="header">
       <span class="iconfont icon-caidan"></span>
       <h2>网易云音乐</h2>
-      <span class="iconfont icon-41"></span>
+      <router-link class="search" to="/search">
+        <span class="iconfont icon-41"></span>
+      </router-link>
     </header>
     <nav class="header-menu">
       <router-link to="/recommend">
@@ -53,6 +55,9 @@ export default {};
   font-size: 25px;
   padding: 5px 10px;
   color: $font-color-light;
+  .search {
+    color: $font-color-light-v2;
+  }
   h2 {
     font-size: 20px;
   }
